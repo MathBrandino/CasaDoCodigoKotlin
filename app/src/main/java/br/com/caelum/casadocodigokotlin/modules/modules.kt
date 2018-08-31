@@ -6,6 +6,8 @@ import br.com.caelum.casadocodigokotlin.viewmodel.LivroViewModel
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 private val repository: Module = module {
@@ -13,7 +15,15 @@ private val repository: Module = module {
 }
 
 private val webClientModule: Module = module {
-    single { WebClient() }
+    val url = "http://cdcmob.herokuapp.com/"
+
+    single { WebClient(get()) }
+    single {
+        Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+    }
 }
 
 private val viewmodels: Module = module {

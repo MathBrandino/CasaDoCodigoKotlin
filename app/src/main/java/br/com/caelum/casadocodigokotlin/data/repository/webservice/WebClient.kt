@@ -6,17 +6,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-class WebClient {
+class WebClient(private val client: Retrofit) {
 
-    private val url = "http://cdcmob.herokuapp.com/"
-
-    private var client: Retrofit = Retrofit.Builder()
-            .baseUrl(url)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
     fun lista(sucesso: (List<Livro>?) -> () -> Unit, erro: (Throwable) -> () -> Unit) {
 

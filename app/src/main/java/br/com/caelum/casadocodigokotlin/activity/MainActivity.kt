@@ -10,7 +10,7 @@ import br.com.caelum.casadocodigokotlin.fragment.CarregandoFragment
 import br.com.caelum.casadocodigokotlin.fragment.ErroFragment
 import br.com.caelum.casadocodigokotlin.fragment.ListaLivrosFragment
 import br.com.caelum.casadocodigokotlin.viewmodel.LivroViewModel
-import br.com.caelum.casadocodigokotlin.viewmodel.LivroViewModelFactory
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             exibe(CarregandoFragment(), false)
         }
-        val viewModel = ViewModelProviders.of(this, LivroViewModelFactory).get(LivroViewModel::class.java)
+        val viewModel : LivroViewModel by viewModel()
 
         viewModel.lista().observe(this, Observer { exibe(ListaLivrosFragment(), false) })
         viewModel.erro().observe(this, Observer { exibe(ErroFragment(), false) })

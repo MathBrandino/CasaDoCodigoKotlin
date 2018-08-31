@@ -2,7 +2,6 @@ package br.com.caelum.casadocodigokotlin.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import br.com.caelum.casadocodigokotlin.data.model.Livro
@@ -30,7 +29,6 @@ class LivroAdapter(private val livros: List<Livro>) : Adapter<LivroAdapter.ViewH
 
     class ViewHolder(val binding: ItemLivroBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: Livro){
-            Log.i("livrp","${item.nome}")
             binding.apply {
                 livro = item
             }

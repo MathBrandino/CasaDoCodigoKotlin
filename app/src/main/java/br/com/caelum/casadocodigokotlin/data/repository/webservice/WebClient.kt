@@ -21,7 +21,8 @@ class WebClient(private val client: Retrofit) {
             }
 
             override fun onResponse(call: Call<Livros>, response: Response<Livros>) {
-                sucesso(response.body()!!.livros)()
+                response.body()?.let { sucesso(it.livros)() }
+
             }
         })
     }

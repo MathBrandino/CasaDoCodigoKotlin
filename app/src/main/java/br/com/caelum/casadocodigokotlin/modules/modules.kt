@@ -8,13 +8,16 @@ import org.koin.dsl.module.Module
 import org.koin.dsl.module.module
 
 
+private val repository: Module = module {
+    single { LivroRepository(get()) }
+}
+
 private val webClientModule: Module = module {
     single { WebClient() }
-    single { LivroRepository(get()) }
 }
 
 private val viewmodels: Module = module {
     viewModel { LivroViewModel(get()) }
 }
 
-val modules = listOf(webClientModule, viewmodels)
+val modules = listOf(webClientModule, viewmodels, repository)
